@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flipkart — India's Best Online Shopping Platform</title>
+  <meta name="description" content="Buy Electronics, Fashion, Home & Kitchen and more at best prices. Free shipping, easy returns and exciting offers on Flipkart." />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="main-header"></header>
+
+  <!-- Main Content -->
+  <main class="page-content">
+    <div class="container">
+
+      <!-- Hero Slider -->
+      <div class="card home-section hero-slider" id="hero-slider" style="margin-bottom:12px"></div>
+
+      <!-- Categories -->
+      <div class="card home-section categories-section">
+        <div id="categories-grid" class="categories-grid"></div>
+      </div>
+
+      <!-- Deals of the Day -->
+      <div class="card home-section deals-section" id="deals-section"></div>
+
+      <!-- Featured Grid -->
+      <div class="card home-section" id="featured-grid"></div>
+
+      <!-- Fashion Row -->
+      <div class="card home-section" id="fashion-section">
+        <div class="section-header">
+          <span class="section-title">👗 Fashion Picks</span>
+          <a href="category.html?cat=fashion" class="section-link">View All →</a>
+        </div>
+        <div class="products-scroll" id="fashion-scroll"></div>
+      </div>
+
+      <!-- Home & Kitchen Row -->
+      <div class="card home-section" id="home-section">
+        <div class="section-header">
+          <span class="section-title">🏠 Home & Kitchen</span>
+          <a href="category.html?cat=home" class="section-link">View All →</a>
+        </div>
+        <div class="products-scroll" id="home-scroll"></div>
+      </div>
+
+      <!-- Books Row -->
+      <div class="card home-section" id="books-section">
+        <div class="section-header">
+          <span class="section-title">📚 Books & More</span>
+          <a href="category.html?cat=books" class="section-link">View All →</a>
+        </div>
+        <div class="products-scroll" id="books-scroll"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="main-footer"></footer>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/home.js"></script>
+  <script>
+    // Additional category row sections — use <a> tags for reliable navigation
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = [
+        { id: 'fashion-scroll', cat: 'fashion' },
+        { id: 'home-scroll',    cat: 'home' },
+        { id: 'books-scroll',   cat: 'books' },
+      ];
+      sections.forEach(({ id, cat }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const products = PRODUCTS.filter(p => p.category === cat).slice(0, 6);
+        el.innerHTML = products.map(p => productCardHTML(p)).join('');
+      });
+    });
+  </script>
+</body>
+</html>
